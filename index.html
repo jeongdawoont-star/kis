@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KIS 메인 페이지</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-top: #fff8e6;
+        --bg-bottom: #d9f0ff;
+        --card-bg: rgba(255, 255, 255, 0.9);
+        --title: #103b50;
+        --line: #9ec9da;
+        --accent-a: #ff9f45;
+        --accent-b: #46b6c7;
+        --text: #263238;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Nanum Gothic", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 12% 10%, rgba(255, 174, 102, 0.35), transparent 42%),
+          radial-gradient(circle at 88% 18%, rgba(79, 196, 212, 0.32), transparent 38%),
+          linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+      }
+
+      .wrap {
+        width: min(1200px, 92vw);
+        margin: 0 auto;
+        padding: 34px 0 28px;
+      }
+
+      .header {
+        margin-bottom: 22px;
+      }
+
+      .header h1 {
+        margin: 0;
+        font-family: "Black Han Sans", sans-serif;
+        letter-spacing: 0.03em;
+        font-size: clamp(2rem, 2.8vw, 3rem);
+        color: var(--title);
+      }
+
+      .header p {
+        margin: 10px 0 0;
+        font-size: 0.97rem;
+        line-height: 1.6;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+
+      .panel {
+        background: var(--card-bg);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 14px 36px rgba(16, 59, 80, 0.16);
+        backdrop-filter: blur(2px);
+        min-height: 72vh;
+        display: flex;
+        flex-direction: column;
+        animation: rise 0.65s ease both;
+      }
+
+      .panel:nth-child(2) {
+        animation-delay: 0.12s;
+      }
+
+      .panel-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        padding: 13px 16px;
+        border-bottom: 1px solid #dceef6;
+      }
+
+      .panel-title {
+        margin: 0;
+        font-size: 1.04rem;
+        font-weight: 800;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 0.74rem;
+        font-weight: 700;
+        color: #123;
+        background: linear-gradient(120deg, var(--accent-a), #ffd4a5);
+      }
+
+      .chip.padlet {
+        background: linear-gradient(120deg, var(--accent-b), #a6ecf5);
+      }
+
+      iframe {
+        width: 100%;
+        flex: 1;
+        border: 0;
+        background: #fff;
+      }
+
+      .fallback {
+        margin: 0;
+        padding: 8px 14px 12px;
+        font-size: 0.85rem;
+        border-top: 1px solid #e5f2f7;
+      }
+
+      .fallback a {
+        color: #0f587a;
+        font-weight: 700;
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(12px) scale(0.985);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @media (max-width: 960px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .panel {
+          min-height: 62vh;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <header class="header">
+        <h1>KIS 메인 페이지</h1>
+        <p>
+          한 화면에서 구글 시트와 패들렛을 동시에 확인할 수 있도록 구성했습니다.
+          아래 두 URL을 실제 링크로 바꾸면 바로 프레임으로 표시됩니다.
+        </p>
+      </header>
+
+      <section class="grid">
+        <article class="panel">
+          <div class="panel-head">
+            <h2 class="panel-title">구글 시트</h2>
+            <span class="chip">Google Sheet</span>
+          </div>
+          <iframe
+            title="구글 시트"
+            src="https://docs.google.com/spreadsheets/d/e/2PACX-EXAMPLE/pubhtml?widget=true&amp;headers=false"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+          <p class="fallback">
+            프레임이 보이지 않으면
+            <a href="https://docs.google.com/spreadsheets/d/e/2PACX-EXAMPLE/pubhtml?widget=true&amp;headers=false" target="_blank" rel="noopener noreferrer"
+              >구글 시트 새 창 열기</a
+            >
+          </p>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <h2 class="panel-title">패들렛</h2>
+            <span class="chip padlet">Padlet</span>
+          </div>
+          <iframe
+            title="패들렛"
+            src="https://padlet.com/your-id/your-padlet/embed"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+          <p class="fallback">
+            프레임이 보이지 않으면
+            <a href="https://padlet.com/your-id/your-padlet" target="_blank" rel="noopener noreferrer"
+              >패들렛 새 창 열기</a
+            >
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
